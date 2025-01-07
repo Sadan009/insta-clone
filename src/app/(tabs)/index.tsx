@@ -1,9 +1,14 @@
-import { Text, View } from "react-native";
+import { FlatList } from "react-native";
+import posts from "~/assets/data/posts.json";
+import PostListItem from "~/src/components/PostListItem";
 
 export default function FeedSreen() {
   return (
-    <View className="bg-slate-400 flex-1 items-center justify-center">
-      <Text className="text-5xl font-bold text-white">Feed</Text>;
-    </View>
+    <FlatList
+      data={posts}
+      contentContainerStyle={{gap:3}}
+      renderItem={({item}) => <PostListItem post={item} />}
+      showsVerticalScrollIndicator={false}
+    />
   );
 }
