@@ -3,10 +3,6 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Feather from "@expo/vector-icons/Feather";
 
-import posts from "~/assets/data/posts.json";
-
-const post1 = posts[0];
-
 export default function PostListItem({ post }) {
   return (
     <View className="bg-white">
