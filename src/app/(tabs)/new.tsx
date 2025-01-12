@@ -35,7 +35,7 @@ export default function CreatePost() {
       return;
     }
     const response = await uploadImage(image);
-    // save the post in database;
+    
     console.log("image id: ", response?.public_id);
   };
 

@@ -2,13 +2,14 @@ import { Image, Text, TextInput, View } from "react-native";
 import { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import Button from "~/src/components/Button";
+import { supabase } from "~/src/lib/supabase";
 
 export default function ProfileScreen() {
   const [image, setImage] = useState<string | null>(null);
   const [username, setUsername] = useState("");
 
   const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
+    
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ["images"],
       allowsEditing: true,
@@ -54,7 +55,7 @@ export default function ProfileScreen() {
       {/* Button */}
       <View className="mt-auto gap-2">
         <Button title="Update" />
-        <Button title="Sign out" />
+        <Button title="Sign out" onPress={() => supabase.auth.signOut()} />
       </View>
     </View>
   );
