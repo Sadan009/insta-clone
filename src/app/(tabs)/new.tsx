@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Image, Pressable, Text, TextInput, View } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import Button from "~/src/components/Button";
+import { uploadImage } from "~/src/lib/cloudinary";
 
 export default function CreatePost() {
   const [caption, setCaption] = useState("");
@@ -25,6 +26,17 @@ export default function CreatePost() {
     if (!result.canceled) {
       setImage(result.assets[0].uri);
     }
+  };
+
+
+
+  const createPost = async () => {
+    if(!image){
+      return;
+    }
+    const response = await uploadImage(image);
+    // save the post in database;
+    console.log("image id: ", response?.public_id);
   };
 
   return (
@@ -54,7 +66,7 @@ export default function CreatePost() {
 
       {/* Button */}
       <View className="mt-auto w-full">
-        <Button title="Share" />
+        <Button title="Share" onPress={createPost} />
       </View>
     </View>
   );
